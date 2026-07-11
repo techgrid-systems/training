@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #7030a0; padding-bottom: 10px; }
+        h2 { color: #7030a0; margin-top: 30px; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        code { background: #eee; color: #d63031; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+        pre { background: #2d3436; color: #fab1a0; padding: 15px; border-radius: 5px; overflow-x: auto; }
+         nav { margin-bottom: 30px; }
+        nav a { color: #2c3e50; margin: 0 10px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    
+    <nav>
+        <a href="https://adamrayliffe.github.io/power-automation/">Home</a>
+    </nav>
+    
+    <h1>Power Automate to Microsoft Forms Integration Guide</h1>
+
+    <div class="card">
+        <h2>1. Trigger & Response Details</h2>
+        <ul>
+            <li><strong>Trigger:</strong> When a new response is submitted[cite: 2].</li>
+            <li><strong>Instruction:</strong> Select the form where you want the answers to come from[cite: 2].</li>
+            <li><strong>Get response details:</strong> Form ID = the form name[cite: 2].</li>
+            <li><strong>Response ID:</strong> <code>triggerOutputs()?['body/resourceData/responseId']</code>[cite: 2].</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>2. Variables</h2>
+        <ul>
+            <li><strong>Initialize variable (First Name):</strong> Name: varFirstName, Type: String, Value: Question First Name[cite: 2].</li>
+            <li><strong>Initialize variable (Last Name):</strong> Name: varLastName, Type: String, Value: Question Last Name[cite: 2].</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>3. Compose Functions</h2>
+        <ul>
+            <li><strong>User Principal Name (UPN):</strong> <code>concat(variables('varFirstName'), '.', variables('varLastName'), '@yourdomain.org')</code>[cite: 2].</li>
+            <li><strong>Display Name:</strong> <code>concat(variables('varFirstName'), ' ', variables('varLastName'))</code>[cite: 2].</li>
+            <li><strong>Temporary Password:</strong> <code>concat(substring(base64(guid()), 0, 9), '1', '!', 'A')</code>[cite: 2].</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>4. User Provisioning</h2>
+        <ul>
+            <li><strong>Create user:</strong> Account Enable = Yes[cite: 2].</li>
+            <li><strong>Display Name:</strong> <code>outputs('Compose_-_Display_Name')</code>[cite: 2].</li>
+            <li><strong>Mail Nickname:</strong> <code>first(split(outputs('Compose_-_User_Principal_Name_(UPN)'), '@'))</code>[cite: 2].</li>
+            <li><strong>Password:</strong> <code>outputs('Compose_-_Temporary_Password')</code>[cite: 2].</li>
+            <li><strong>User Principal Name:</strong> <code>outputs('Compose_-_User_Principal_Name_(UPN)')</code>[cite: 2].</li>
+            <li><strong>Given Name:</strong> Question First Name (Dynamic Content)[cite: 2].</li>
+            <li><strong>Surname:</strong> Question Last Name (Dynamic Content)[cite: 2].</li>
+            <li><strong>Job Title:</strong> Question Job Title (Dynamic Content)[cite: 2].</li>
+            <li><strong>Update user:</strong> User Id or Principal Name = <code>outputs('Create_user')?['body/userPrincipalName']</code>[cite: 2].</li>
+            <li><strong>Additional Properties:</strong> employeeId = <code>outputs('Compose_-_Postcode_Employee_ID')</code>[cite: 2].</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5. Email to Support</h2>
+        <p>Dear Arc Systems,</p>
+        <p>A new starter has been submitted & created for Rennie Grove Peace Hospice. Please find the details below[cite: 2].</p>
+        <pre>
+Automatic Account Details:
+New Starter Name: @{outputs('Create_user')?['body/displayName']}
+New Starter Email: @{outputs('Create_user')?['body/userPrincipalName']}
+New Starter Display Name: @{outputs('Create_user')?['body/displayName']}
+New Starter Temporary Password: @{outputs('Compose_-_Temporary_Password')}
+New Starter Employee ID: outputs('Compose_-_Postcode_Employee_ID')
+New Starter Job Title: @{outputs('Create_user')?['body/jobTitle']}
+New Starter Department: @{first(body('Filter_array'))?['Dept']}
+New Starter Office Location: @{outputs('Create_user')?['body/officeLocation']}
+
+Manual Intervention Required:
+Please complete the following for the new starter account:
+1. Line Manager Field: Question Line Manager
+2. Distribution Groups Please add the correct Distribution Groups
+3. Shared Mailboxes Please add correct shared mailboxes
+
+To do list for after manual intervention:
+Please go over the account and make sure everything matches up to the correct groups and mailboxes to the department the user is in.
+
+Kind regards,
+Company Name Automation Systems
+        </pre>
+    </div>
+
+</body>
+</html>

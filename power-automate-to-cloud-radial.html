@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 40px auto; padding: 20px; background-color: #f4f7f6; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; }
+        h3 { color: #16a085; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        code { background: #2d3436; color: #fab1a0; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; }
+        pre { background: #2d3436; color: #dfe6e9; padding: 15px; overflow-x: auto; border-radius: 5px; font-size: 0.9em; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        nav { margin-bottom: 30px; }
+        nav a { color: #2c3e50; margin: 0 10px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+        <nav>
+        <a href="https://adamrayliffe.github.io/power-automation/">Home</a>
+    </nav>
+    
+    <h1>Power Automate to Cloud Radial Integration Guide</h1>
+
+    <div class="card">
+        <h2>1. HTTP Request Trigger</h2>
+        <p>Set up the <code>When an HTTP request is received</code> trigger using the following JSON payload schema[cite: 1, 2]:</p>
+        <pre>
+{
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "Question": {
+          "type": "object",
+          "properties": { "type": { "type": "string" } }
+        },
+        " Question ": {
+          "type": "object",
+          "properties": { "type": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
+        </pre>
+    </div>
+
+    <div class="card">
+        <h2>2. Data Filtering</h2>
+        <p>Create separate filter components for your questions[cite: 27]:</p>
+        <ul>
+            <li><strong>From:</strong> <code>triggerBody()?['Ticket']?['Questions']</code> [cite: 27]</li>
+            <li><strong>Filter Query:</strong> <code>item()?['Id']</code> [cite: 27]</li>
+            <li><strong>Is Equal To:</strong> The JSON ID (e.g., <code>requestBy</code>) [cite: 27]</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>3. Compose Functions</h2>
+        <p>Create the following Compose functions to structure your data[cite: 28]:</p>
+        <ul>
+            <li><strong>Job Title:</strong> <code>first(body('Filter_JobTitle'))?['value']</code> [cite: 28]</li>
+            <li><strong>First Name:</strong> <code>body('Filter_First_Name')?[0]?['Value']</code> [cite: 28]</li>
+            <li><strong>Last Name:</strong> <code>body('Filter_Surname')?[0]?['Value']</code> [cite: 28]</li>
+            <li><strong>Display Name:</strong> <code>concat(outputs('Compose_First_Name'), ' ', outputs('Compose_Last_Name'))</code> [cite: 28]</li>
+            <li><strong>UPN:</strong> <code>concat(toLower(coalesce(outputs('Compose_First_Name'), '')), '.', toLower(coalesce(outputs('Compose_Last_Name'), '')), '@yourdomain.com')</code> [cite: 28]</li>
+            <li><strong>Temporary Password:</strong> <code>concat(substring(base64(guid()), 0, 9), '1', '!', 'A')</code> [cite: 28]</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>4. Create User (Entra/AD)</h2>
+        <p>Configure the Create User action with these parameters[cite: 29, 30]:</p>
+        <ul>
+            <li><strong>Account Enabled:</strong> yes [cite: 30]</li>
+            <li><strong>Display Name:</strong> <code>outputs('Compose_Display_Name')</code> [cite: 30]</li>
+            <li><strong>Mail Nickname:</strong> <code>first(split(outputs('Compose_-_User_Principal_Name_(UPN)'), '@'))</code> [cite: 30]</li>
+            <li><strong>Password:</strong> <code>outputs('Compose_-_Temporary_Password')</code> [cite: 30]</li>
+            <li><strong>User Principal Name:</strong> <code>outputs('Compose_-_User_Principal_Name_(UPN)')</code> [cite: 30]</li>
+            <li><strong>Given Name:</strong> <code>outputs('Compose_First_Name')</code> [cite: 30]</li>
+            <li><strong>Surname:</strong> <code>outputs('Compose_Last_Name')</code> [cite: 30]</li>
+            <li><strong>Advanced - Job Title:</strong> <code>outputs('Compose_JobTitle')</code> [cite: 30]</li>
+            <li><strong>Advanced - Office Location:</strong> <code>first(body('Filter_OfficeLocation'))?['Value']</code> [cite: 30]</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5. Email & Manual Intervention</h2>
+        <p>Compose an email body detailing the following[cite: 32]:</p>
+        <ul>
+            <li><strong>Name/Email/Pass:</strong> Use the outputs from the Create User and Compose steps[cite: 36, 37, 38].</li>
+            <li><strong>Employee ID/Office:</strong> Use <code>first(body('Filter_Postcode'))?['Value']</code> and <code>first(body('Filter_OfficeLocation'))?['Value']</code>[cite: 39, 41].</li>
+            <li><strong>Manual Tasks:</strong> Include instructions to add the Manager (<code>first(body('Filter_ManagerEmail'))?['Value']</code>), assign to groups, add to shared mailboxes, and assign Microsoft Licenses[cite: 44, 45, 46, 47].</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>6. Autotask HTTP Connector</h2>
+        <p>Configure the HTTP connector to update Autotask[cite: 54]:</p>
+        <ul>
+            <li><strong>URI:</strong> <code>https://webservices16.autotask.net/atservicesrest/v1.0/Tickets</code> [cite: 54]</li>
+            <li><strong>Method:</strong> <code>POST</code> [cite: 54]</li>
+            <li><strong>Contact Mapping:</strong> <code>triggerOutputs()?['body']?['User']?['UserPsaId']</code> [cite: 31]</li>
+        </ul>
+        <pre>
+"Title": "[SUCCESS] New Starter - @{outputs('Compose_Display_Name')} - @{body('Filter_StartDate')?[0]?['Value']}",
+"Description": "@{outputs('Compose_Email')}",
+"Status": 1,
+"Priority": 3,
+"CompanyID": 14748,
+"ContactID": @{outputs('Compose_-_Autotask_Contact_Mapping')},
+"TicketCategory": 126,
+"IssueType": 252,
+"SubIssueType": 1501,
+"QueueID": 29683624,
+"Source": 21
+        </pre>
+    </div>
+
+</body>
+</html>
