@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Demo | Power Automate Training Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .logo-placeholder { background: linear-gradient(135deg, #0078d4, #005a9e); }
+        .module-card { transition: transform 0.2s; }
+        .module-card:hover { transform: translateY(-4px); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <header>
+        <div class="bg-blue-900 text-white py-2 px-6 text-right text-sm font-medium">
+            <a href=".././downloads/" class="hover:text-blue-200 px-3">Downloads</a>
+            <span class="text-blue-700">|</span>
+            <a href=".././free-demo/" class="text-blue-200 px-3 font-bold underline">Free Demo</a>
+            <span class="text-blue-700">|</span>
+            <a href=".././training-certifications/" class="hover:text-blue-200 px-3">Training Centre</a>
+        </div>
+        
+        <div class="bg-white py-4 px-6 flex items-center justify-between border-b shadow-sm">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 logo-placeholder rounded flex items-center justify-center text-white font-bold text-lg">PA</div>
+                <span class="font-bold text-xl tracking-tight text-gray-900">Power Automate</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-semibold text-gray-600">
+                <a href="https://adamrayliffe.github.io/power-automation/" class="hover:text-blue-600">Home</a>
+                <a href=".././about/" class="hover:text-blue-600">About</a>
+                <a href=".././support/" class="hover:text-blue-600">Support</a>
+                <a href=".././FAQs/" class="hover:text-blue-600">FAQs</a>
+                <a href=".././contact/" class="hover:text-blue-600">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto py-16 px-6">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Academy Course Demo</h1>
+        <p class="text-gray-600 mb-10">Get a hands-on preview of our training structure. This is a condensed module from our <strong>PA 1: Foundational Automation</strong> course.</p>
+        
+        <!-- Course Module Preview Component -->
+        <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden mb-12">
+            <!-- Header -->
+            <div class="bg-gray-800 text-white p-6 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold">Module 1.2: Triggering Your First Flow</h2>
+                    <p class="text-blue-200 text-sm">Foundational Automation • 15 min read</p>
+                </div>
+                <div class="bg-blue-600 text-xs px-3 py-1 rounded-full font-bold">Progress: 25%</div>
+            </div>
+            
+            <!-- Lesson Content -->
+            <div class="p-8">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Objective</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    In this lesson, you will learn how to trigger a Power Automate flow using a Microsoft Form submission. We will focus on mapping form fields to your automated workflow actions.
+                </p>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <p class="text-blue-900 text-sm italic">"Automation is not just about replacing tasks; it is about creating consistency and reliability in your workflows."</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Step-by-Step Implementation</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 shrink-0">1</div>
+                        <p class="text-gray-700 py-1">Open your Microsoft Forms instance and ensure your trigger fields are correctly mapped as JSON objects.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 shrink-0">2</div>
+                        <p class="text-gray-700 py-1">In Power Automate, create a new Cloud Flow using the <strong>"When a new response is submitted"</strong> trigger.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-gray-200 text-gray-600 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 shrink-0">3</div>
+                        <p class="text-gray-400 py-1">(Locked) Configure the mapping to your target automation destination.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 p-4 border-t border-gray-200 text-right">
+                <button class="bg-blue-600 text-white font-bold py-2 px-6 rounded-md hover:bg-blue-700 transition">Next Lesson →</button>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center bg-blue-900 text-white p-10 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Unlock the Full Curriculum</h2>
+            <p class="text-blue-100 mb-8 max-w-xl mx-auto">This demo is just the beginning. Our full certification path includes over 50 hours of content, templates, and expert support.</p>
+            <a href=".././training-certifications/" class="inline-block bg-white text-blue-900 font-bold py-3 px-8 rounded-md hover:bg-gray-100 transition duration-200">
+                View Full Training Path
+            </a>
+        </div>
+    </main>
+
+    <footer class="text-center py-10 text-gray-500 text-sm border-t">
+        &copy; 2026 Power Automate Training Academy. All rights reserved.
+    </footer>
+
+</body>
+</html>
