@@ -3,98 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Automate Certifications</title>
+    <title>Training Certifications | Power Automate Training Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .cert-table { border-collapse: collapse; width: 100%; }
-        .cert-row { border-bottom: 1px solid #e5e7eb; }
-        .cert-cell { padding: 24px; vertical-align: top; }
         .logo-placeholder { background: linear-gradient(135deg, #0078d4, #005a9e); }
+        .folder-card { transition: all 0.3s ease; }
+        .folder-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-
     <header>
-        <!-- Top Nav Bar -->
         <div class="bg-blue-900 text-white py-2 px-6 text-right text-sm font-medium">
-            <a href=".././downloads/" class="hover:text-blue-200 px-3">Downloads</a>
+            <a href="../downloads/" class="hover:text-blue-200 px-3">Downloads</a>
             <span class="text-blue-700">|</span>
-            <a href=".././free-demo/" class="hover:text-blue-200 px-3">Free Demo</a>
+            <a href="../free-demo/" class="hover:text-blue-200 px-3">Free Demo</a>
             <span class="text-blue-700">|</span>
-            <a href="/training-centre/" class="hover:text-blue-200 px-3">Training Centre</a>
+            <a href="/training-certifications/" class="hover:text-blue-200 px-3">Training Centre</a>
         </div>
         
-        <!-- Bottom Nav Bar -->
         <div class="bg-white py-4 px-6 flex items-center justify-between border-b shadow-sm">
             <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 logo-placeholder rounded flex items-center justify-center text-white font-bold text-lg">PA</div>
-                <span class="font-bold text-xl tracking-tight text-gray-900">Power Automate</span>
+                <span class="font-bold text-xl tracking-tight text-gray-900">Training Academy</span>
             </div>
             <nav class="hidden md:flex space-x-8 font-semibold text-gray-600">
                 <a href="https://training.techgrid-systems.org.uk/" class="hover:text-blue-600">Home</a>
-                <a href=".././about/" class="hover:text-blue-600">About</a>
-                <a href=".././support/" class="hover:text-blue-600">Support</a>
-                <a href=".././FAQs/" class="hover:text-blue-600">FAQs</a>
-                <a href=".././contact/" class="hover:text-blue-600">Contact</a>
+                <a href="../about/" class="hover:text-blue-600">About</a>
+                <a href="../support/" class="hover:text-blue-600">Support</a>
+                <a href="../contact/" class="hover:text-blue-600">Contact</a>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto py-12 px-6">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Training Certifications</h1>
+    <main class="max-w-4xl mx-auto py-16 px-6">
+        <h1 class="text-4xl font-bold text-gray-900 mb-12 text-center">Select Training Area</h1>
         
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <table class="cert-table">
-                <thead class="bg-gray-100 border-b border-gray-200 text-left text-xs uppercase text-gray-500 font-bold">
-                    <tr>
-                        <th class="px-6 py-4">Certification</th>
-                        <th class="px-6 py-4">Level</th>
-                        <th class="px-6 py-4">Description</th>
-                        <th class="px-6 py-4">Prerequisites</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- PA 3 Row -->
-                    <tr class="cert-row hover:bg-gray-50 transition-colors">
-                        <td class="cert-cell w-40">
-                            <div class="w-16 h-16 logo-placeholder rounded-lg mb-2 flex items-center justify-center text-white font-bold">PA3</div>
-                            <a href="Power-Automate-Level-3.html" class="text-blue-600 font-semibold underline text-sm">Learn More</a>
-                        </td>
-                        <td class="cert-cell font-bold text-gray-700">PA 3</td>
-                        <td class="cert-cell text-gray-600 leading-relaxed">
-                            <p>Covers advanced professional services automation, including API-driven ticket management, Autotask integration, and automated lifecycle management.</p>
-                        </td>
-                        <td class="cert-cell text-gray-600 text-sm">You must successfully pass both the PA 1 and PA 2 examinations to enroll.</td>
-                    </tr>
-                    
-                    <!-- PA 2 Row -->
-                    <tr class="cert-row hover:bg-gray-50 transition-colors">
-                        <td class="cert-cell">
-                            <div class="w-16 h-16 bg-purple-700 rounded-lg mb-2 flex items-center justify-center text-white font-bold">PA2</div>
-                            <a href="Power-Automate-Level-2.html" class="text-blue-600 font-semibold underline text-sm">Learn More</a>
-                        </td>
-                        <td class="cert-cell font-bold text-gray-700">PA 2</td>
-                        <td class="cert-cell text-gray-600 leading-relaxed">
-                            <p>Advances to handling complex JSON payloads, utilizing filter components, and connecting to third-party services like Cloud Radial.</p>
-                        </td>
-                        <td class="cert-cell text-gray-600 text-sm">Completion of the Foundational Automation course and successful pass of PA 1 exam.</td>
-                    </tr>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Power Automate Training Folder -->
+            <a href="https://training.techgrid-systems.org.uk/training-centre/power-automate-training/" class="folder-card bg-white p-8 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
+                <div class="text-6xl mb-6">📁</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Power Automate Training</h2>
+                <p class="text-gray-500">Access all certification modules, lessons, and resources.</p>
+            </a>
 
-                    <!-- PA 1 Row -->
-                    <tr class="cert-row hover:bg-gray-50 transition-colors">
-                        <td class="cert-cell">
-                            <div class="w-16 h-16 bg-teal-600 rounded-lg mb-2 flex items-center justify-center text-white font-bold">PA1</div>
-                            <a href="Power-Automate-Level-1.html" class="text-blue-600 font-semibold underline text-sm">Learn More</a>
-                        </td>
-                        <td class="cert-cell font-bold text-gray-700">PA 1</td>
-                        <td class="cert-cell text-gray-600 leading-relaxed">
-                            <p>Focuses on basic trigger configurations, such as Microsoft Forms integration, and understanding the core Power Automate interface for entry-level tasks.</p>
-                        </td>
-                        <td class="cert-cell text-gray-600 text-sm">No prior experience required. Introduction to Power Automate fundamentals course.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Network Training Folder -->
+            <a href="https://training.techgrid-systems.org.uk/training-centre/network-training/" class="folder-card bg-white p-8 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
+                <div class="text-6xl mb-6">📁</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Network Training</h2>
+                <p class="text-gray-500">View network certification paths and technical documentation.</p>
+            </a>
         </div>
     </main>
 
