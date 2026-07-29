@@ -21,4 +21,5 @@ Responsive Design: Built with Tailwind CSS for a modern, professional look acros
 <br>
 We welcome contributions to the training material! Please email to adamryanayliffe@gmail.com
 <br>
-Â© 2026 Power Automate Training Academy. All rights reserved.
+© 2026 Power Automate Training Academy. All rights reserved.
+this is the a test 
